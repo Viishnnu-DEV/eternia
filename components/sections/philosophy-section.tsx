@@ -38,7 +38,7 @@ export function PhilosophySection() {
           trigger: containerRef.current,
           start: "top top",
           end: "bottom bottom",
-          scrub: 1, // Smooth scrub behavior
+          scrub: 0.5, // Re-added a balanced smoothing delay (0.5s instead of 1s or 0s)
           pin: false, // Rely on CSS sticky top-0
         },
       });
@@ -67,115 +67,29 @@ export function PhilosophySection() {
 
       // 3. Staged Animation Progression
       
-      // Title 1 (Timeless Elegance.) : 0% -> 25% of scroll
-      tl.to(
-        titleRefs.current[0],
-        {
-          rotationX: 0,
-          y: 0,
-          scale: 1,
-          duration: 0.15,
-          ease: "none",
-        },
-        0
-      );
-      tl.to(
-        titleRefs.current[0],
-        {
-          filter: "blur(0px)",
-          opacity: 1,
-          duration: 0.12,
-          ease: "none",
-        },
-        0.05
-      ); // Starts after perspective straighten begins
-      tl.to(
-        titleRefs.current[0],
-        {
-          rotationX: -75,
-          y: -150,
-          scale: 0.9,
-          filter: "blur(20px)",
-          opacity: 0,
-          duration: 0.05,
-          ease: "none",
-        },
-        0.20
-      );
+      // Title 1 (Timeless Elegance.) : 0% -> 30% of scroll
+      tl.to(titleRefs.current[0], { rotationX: 0, y: 0, scale: 1, duration: 0.10, ease: "none" }, 0);
+      tl.to(titleRefs.current[0], { filter: "blur(0px)", opacity: 1, duration: 0.08, ease: "none" }, 0.02); 
+      tl.to(titleRefs.current[0], { rotationX: -75, y: -150, scale: 0.9, filter: "blur(20px)", opacity: 0, duration: 0.10, ease: "none" }, 0.20);
 
-      // Title 2 (Unforgettable Moments.) : 25% -> 50% of scroll
-      tl.to(
-        titleRefs.current[1],
-        {
-          rotationX: 0,
-          y: 0,
-          scale: 1,
-          duration: 0.15,
-          ease: "none",
-        },
-        0.25
-      );
-      tl.to(
-        titleRefs.current[1],
-        {
-          filter: "blur(0px)",
-          opacity: 1,
-          duration: 0.12,
-          ease: "none",
-        },
-        0.30
-      ); // Starts after perspective straighten begins
-      tl.to(
-        titleRefs.current[1],
-        {
-          rotationX: -75,
-          y: -150,
-          scale: 0.9,
-          filter: "blur(20px)",
-          opacity: 0,
-          duration: 0.05,
-          ease: "none",
-        },
-        0.45
-      );
+      // Title 2 (Unforgettable Moments.) : 25% -> 55% of scroll
+      tl.to(titleRefs.current[1], { rotationX: 0, y: 0, scale: 1, duration: 0.10, ease: "none" }, 0.25);
+      tl.to(titleRefs.current[1], { filter: "blur(0px)", opacity: 1, duration: 0.08, ease: "none" }, 0.27); 
+      tl.to(titleRefs.current[1], { rotationX: -75, y: -150, scale: 0.9, filter: "blur(20px)", opacity: 0, duration: 0.10, ease: "none" }, 0.45);
 
-      // Title 3 (Your Perfect Day.) : 50% -> 75% of scroll
-      tl.to(
-        titleRefs.current[2],
-        {
-          rotationX: 0,
-          y: 0,
-          scale: 1,
-          duration: 0.15,
-          ease: "none",
-        },
-        0.50
-      );
-      tl.to(
-        titleRefs.current[2],
-        {
-          filter: "blur(0px)",
-          opacity: 1,
-          duration: 0.12,
-          ease: "none",
-        },
-        0.55
-      ); // Starts after perspective straighten begins
+      // Title 3 (Your Perfect Day.) : 50% -> stays
+      tl.to(titleRefs.current[2], { rotationX: 0, y: 0, scale: 1, duration: 0.10, ease: "none" }, 0.50);
+      tl.to(titleRefs.current[2], { filter: "blur(0px)", opacity: 1, duration: 0.08, ease: "none" }, 0.52); 
       // Title 3 stays visible during description reveal
 
-      // Description words reveal : 68% -> 88% of scroll
+      // Description words reveal : 60% -> 80% of scroll
       const totalWords = wordRefs.current.length;
       wordRefs.current.forEach((wordRef, idx) => {
         if (wordRef) {
-          const wordStart = 0.68 + (idx / totalWords) * 0.20;
+          const wordStart = 0.60 + (idx / totalWords) * 0.20;
           tl.to(
             wordRef,
-            {
-              filter: "blur(0px)",
-              opacity: 1,
-              duration: 0.05,
-              ease: "none",
-            },
+            { filter: "blur(0px)", opacity: 1, duration: 0.05, ease: "none" },
             wordStart
           );
         }
@@ -184,12 +98,7 @@ export function PhilosophySection() {
       // Outro transition smoothly into next section: 90% -> 100% of scroll
       tl.to(
         [labelRef.current, titleRefs.current[2], descriptionRef.current],
-        {
-          opacity: 0,
-          y: -100,
-          duration: 0.10,
-          ease: "none",
-        },
+        { opacity: 0, y: -100, duration: 0.10, ease: "none" },
         0.90
       );
     }, containerRef);
@@ -201,7 +110,7 @@ export function PhilosophySection() {
     <section
       ref={containerRef}
       id="products"
-      className="relative h-[400vh] overflow-visible bg-background"
+      className="relative h-[350vh] overflow-visible bg-background"
     >
       {/* Sticky container matching h-screen */}
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col items-center justify-center">

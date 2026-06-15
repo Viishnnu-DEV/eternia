@@ -159,16 +159,18 @@ export function HeroSection() {
               
               {/* Hero Content */}
               <div
-                className="absolute inset-0 z-30 flex items-end px-6 pb-[15vh] md:items-center md:pb-0 md:px-12 lg:px-20"
+                className="absolute inset-0 z-30 flex items-center justify-center px-6 pb-12 md:justify-start md:pb-0 md:px-12 lg:px-20"
                 style={{ opacity: textOpacity }}
               >
-                <div className="max-w-3xl text-white">
+                <div className="max-w-3xl text-white text-center md:text-left flex flex-col items-center md:items-start w-full">
                   {/* Decorative gold line */}
-                  <div className="mb-5 flex items-center gap-3">
-                    <div className="h-px w-10 bg-gradient-to-r from-[#D08327] to-transparent" />
+                  <div className="mb-6 flex items-center justify-center gap-3 md:justify-start w-full">
+                    <div className="md:hidden h-px w-8 bg-gradient-to-r from-transparent to-[#D08327]" />
+                    <div className="hidden md:block h-px w-10 bg-gradient-to-r from-[#D08327] to-transparent" />
                     <p className="text-[10px] font-bold uppercase tracking-[0.55em] text-[#D08327]">
                       Luxury Wedding Venue
                     </p>
+                    <div className="md:hidden h-px w-8 bg-gradient-to-l from-transparent to-[#D08327]" />
                   </div>
                   
                   <h1 className="font-display text-[15vw] font-medium leading-[0.88] tracking-[-0.02em] md:text-[10vw] lg:text-[8vw]">
@@ -177,20 +179,20 @@ export function HeroSection() {
                     </span>
                   </h1>
                   
-                  <p className="mt-5 max-w-md text-base leading-relaxed text-white/65 md:text-lg">
+                  <p className="mt-6 max-w-md text-base leading-relaxed text-white/65 md:text-lg">
                     Where timeless celebrations begin.
                   </p>
                   
-                  <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <div className="mt-10 flex w-full max-w-xs flex-col gap-4 sm:max-w-none sm:flex-row sm:justify-center md:justify-start">
                     <Link
                       href="#reserve"
-                      className="btn-shimmer inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#D08327] to-[#b06a1a] px-8 py-3.5 text-[13px] font-bold tracking-wide text-[#0a0406] shadow-[0_16px_50px_rgba(208,131,39,0.35)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(208,131,39,0.45)]"
+                      className="btn-shimmer inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-gradient-to-r from-[#D08327] to-[#b06a1a] px-8 py-3.5 text-[13px] font-bold tracking-wide text-[#0a0406] shadow-[0_16px_50px_rgba(208,131,39,0.35)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(208,131,39,0.45)]"
                     >
                       Book a Private Tour
                     </Link>
                     <Link
                       href="#gallery"
-                      className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-8 py-3.5 text-[13px] font-semibold tracking-wide text-white/90 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#D08327]/40 hover:bg-white/5"
+                      className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-white/20 px-8 py-3.5 text-[13px] font-semibold tracking-wide text-white/90 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#D08327]/40 hover:bg-white/5"
                     >
                       Explore
                     </Link>
@@ -234,7 +236,7 @@ export function HeroSection() {
         className="pointer-events-none fixed bottom-0 left-0 right-0 z-40 px-6 pb-8 md:px-12 md:pb-12 lg:px-20 lg:pb-14"
         style={{ opacity: textOpacity }}
       >
-        <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 border-t border-white/15 pt-5 text-center md:flex-row md:text-left">
+        <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 pt-5 text-center md:flex-row md:text-left">
           <p className="font-display text-xl leading-tight text-white/80 md:text-2xl">
             Ballrooms · Gardens · Couture Service
           </p>

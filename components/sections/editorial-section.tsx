@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, useState, useEffect, useCallback } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
 
 const specs = [
@@ -12,49 +11,6 @@ const specs = [
 ];
 
 export function EditorialSection() {
-  const videoRef = useRef<HTMLDivElement>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const rafRef = useRef<number | null>(null);
-
-  const updateParallax = useCallback(() => {
-    if (!videoRef.current) return;
-    
-    const rect = videoRef.current.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-    
-    // Calculate when video enters and exits viewport
-    const videoTop = rect.top;
-    const videoBottom = rect.bottom;
-    
-    // Progress from 0 (entering viewport) to 1 (exiting viewport)
-    if (videoBottom > 0 && videoTop < windowHeight) {
-      const progress = 1 - (videoTop + rect.height / 2) / (windowHeight + rect.height);
-      setScrollProgress(Math.max(0, Math.min(1, progress)));
-    }
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (rafRef.current) {
-        cancelAnimationFrame(rafRef.current);
-      }
-      rafRef.current = requestAnimationFrame(updateParallax);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    updateParallax();
-    
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (rafRef.current) {
-        cancelAnimationFrame(rafRef.current);
-      }
-    };
-  }, [updateParallax]);
-
-  // Parallax effect: video moves up as you scroll down
-  const parallaxY = (scrollProgress - 0.5) * 30; // -15px to +15px range
-
   return (
     <section className="bg-background">
       {/* Booking Banner */}
@@ -116,29 +72,6 @@ export function EditorialSection() {
             <div className="h-px flex-1 bg-gradient-to-l from-[#D08327]/30 to-transparent" />
           </div>
         </div>
-      </div>
-
-      {/* Full-width Video with Parallax */}
-      <div ref={videoRef} className="relative aspect-[16/9] w-full md:aspect-[21/9] overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 h-full w-full object-cover"
-          style={{
-            transform: `scale(1.15) translate3d(0, ${parallaxY}px, 0) translateZ(0)`,
-            WebkitTransform: `scale(1.15) translate3d(0, ${parallaxY}px, 0) translateZ(0)`,
-            backfaceVisibility: 'hidden',
-            WebkitBackfaceVisibility: 'hidden',
-            willChange: 'transform',
-          }}
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/27eb7fb4-0105-4010-ac9e-0ac977a31b05_1-FZ89nvBAAsR3caRJbhYv7T2mjBofth.mp4"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1a0a0e]/45 via-transparent to-[#D08327]/3" />
-        
-        {/* Gold accent border at top */}
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#D08327]/30 to-transparent" />
       </div>
 
       {/* Specs Grid */}
